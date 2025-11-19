@@ -75,7 +75,9 @@ public class LoanCalc {
 			} else{
 				payHigh = mid;
 			}
+			if (payHigh - payLow > epsilon) {
                  iterationCounter++; 
+			}
 		}
 	   
 		return (payHigh + payLow) / 2;
