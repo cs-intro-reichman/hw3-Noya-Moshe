@@ -69,14 +69,13 @@ public class LoanCalc {
 		while(payHigh - payLow > epsilon){
 			mid = (payLow + payHigh) / 2;
 			double bal = endBalance(loan, rate, n, mid);
-			iterationCounter++;
 
 			if (bal > 0){
 				payLow = mid;
 			} else{
 				payHigh = mid;
 			}
-
+                 iterationCounter++; 
 		}
 	   
 		return (payHigh + payLow) / 2;
