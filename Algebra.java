@@ -84,23 +84,18 @@ public class Algebra {
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		// Replace the following statement with your code
-		if( n == 0){
-			return 1;
+		if( n == 0) return 1;
+			
+		boolean negative = false;
+		if ( x < 0){
+			if(n % 2 != 0) negative = true;
+			x = minus(0, x);
 		}
 		int result = 1;
 		for(int i = 0; i < n; i++){
-			int temp = 0;
-			int counter = 0;
-			while(counter < x){
-				int addCounter = 0;
-				while(addCounter < result){
-					temp++;
-					addCounter++;
-				}
-				counter++;
-			}
-			result = temp;
+			result = times(result, x);
 		}
+		 if (negative) result = minus(0, result);
 		return result;
 	}
 
@@ -108,6 +103,14 @@ public class Algebra {
 	public static int div(int x1, int x2) {
 		// Replace the following statement with your code
 		int result = 0;
+		 boolean negative = false;
+
+		 if ((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)) {
+        negative = true;
+    }
+	     if (x1 < 0) x1 = minus(0, x1);
+         if (x2 < 0) x2 = minus(0, x2);
+
 			while(x1 >= x2){
 				int counter = 0;
 			
@@ -117,6 +120,7 @@ public class Algebra {
 			}
 			result++; 
 		}
+		if (negative) result = minus(0, result);
 		return result;
 	}
 
