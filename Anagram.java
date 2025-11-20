@@ -29,7 +29,25 @@ public class Anagram {
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
 		// Replace the following statement with your code
-		return false;
+		String name = preProcess(str1);
+		String name2 = preProcess(str2);
+
+		if(name.length() != name2.length()) return false;
+		
+		String temp = name2;
+		for(int i = 0; i < name.length(); i++){
+			char c = name.charAt(i);
+			int index = temp.indexOf(c);
+
+			if(index == -1){
+				return false;
+			}else {
+			temp = temp.substring(0, index) + temp.substring(index + 1);	
+			}
+		}
+
+
+		return true;
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
@@ -37,13 +55,30 @@ public class Anagram {
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		// Replace the following statement with your code
-		return "";
+		String result = "";
+		for(int i = 0; i < str.length(); i++){
+		char c = str.charAt(i);
+		if(Character.isLetter(c)){
+			result += Character.toLowerCase(c);
+			}
+		}
+		return result;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
 		// Replace the following statement with your code
-		return "";
+		String original = str;
+		String result = "";
+
+		while(original.length() > 0){
+		int index = (int)(Math.random() * original.length());//בחירת מספר רנדומלי כפול האורך יתן לי מספר רנדומלי בטווח הנכון
+		char c = original.charAt(index); // מחזיר לי מהמחרוזת שקיבלתי את המקיום של האינדקס הרנומלי = זה מתחבר להיות תו רנדומלי
+		result += c;
+		
+		original = original.substring(0,index) + original.substring(index + 1);
+		}
+		return result;
 	}
 }
